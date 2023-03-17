@@ -69,7 +69,7 @@ resource "aws_security_group" "vprofile_backend_sg" {
   }
   ingress {
     from_port       = 0
-    protocol        = "tcp"
+    protocol        = "-1"
     to_port         = 0
     security_groups = [aws_security_group.vprofile_Beans_ec2_sg.id]
 
