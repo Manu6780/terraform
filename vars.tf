@@ -16,7 +16,7 @@ variable "amis" {
     us-east-2 = "ami-00eeedc4036573771"
   }
 }
-variable priv_key {
+variable "priv_key" {
   default = "vprofileprivkey"
 }
 
