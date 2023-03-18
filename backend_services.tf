@@ -31,7 +31,7 @@ resource "aws_db_instance" "vprofile_rds" {
 }
 
 resource "aws_elasticache_cluster" "vprofile_cache" {
-  cluster_id = "vprofile_cache"
+  cluster_id = "vprofile-cache"
   engine = "memcached"
   node_type = "cache.t2.micro"
   parameter_group_name = "default.memcached.5"
@@ -48,8 +48,8 @@ resource "aws_mq_broker" "vprofile-rmq" {
   security_groups = [aws_security_group.vprofile_backend_sg.id]
   subnet_ids = [module.vpc.private_subnets[0]]
   user {
-    password = var.rmquser
-    username = var.rmqpass
+    password = var.rmqpass
+    username = var.rmquser
   }
 }
 
