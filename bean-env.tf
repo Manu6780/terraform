@@ -118,8 +118,8 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
 
   }
   setting {
-    name      = "aws:elbv2:loadbalancer"
-    namespace = "SecurityGroups"
+    namespace      = "aws:elbv2:loadbalancer"
+    name = "SecurityGroups"
     value     = aws_security_group.vprofile_bean_sg.id
   }
   depends_on = [aws_security_group.vprofile_Beans_ec2_sg, aws_security_group.vprofile_Beans_ec2_sg]
