@@ -4,7 +4,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   solution_stack_name = "64bit Amazon Linux 2 v4.3.5 running Tomcat 8.5 Corretto 11"
   cname_prefix        = "vprofile-bean-prod-domain12345"
   setting {
-    name      = "vpc"
+    name      = "VPCId"
     namespace = "aws:ec2:vpc"
     value     = module.vpc.vpc_id
   }
