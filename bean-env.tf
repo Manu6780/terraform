@@ -1,8 +1,8 @@
 resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
-  name = "vprofile-bean-prod"
-  application = aws_elastic_beanstalk_application.vprofil-prod.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.1.1 running Tomcat 8.5 Corretto 11"
-  cname_prefix = "vprofile-bean-prod-domain"
+  name                = "vprofile-bean-prod"
+  application         = aws_elastic_beanstalk_application.vprofil-prod.name
+  solution_stack_name = "64bit Amazon Linux 2 v4.3.5 running Tomcat 8.5 Corretto 11"
+  cname_prefix        = "vprofile-bean-prod-domain12345"
   setting {
     name      = "vpc"
     namespace = "aws:ec2:vpc"
@@ -21,18 +21,18 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   }
   setting {
     name      = "Subnets"
-    value = join(",",[module.vpc.private_subnets[0],module.vpc.private_subnets[1]])
-    namespace   = "aws:ec2:vpc"
+    value     = join(",", [module.vpc.private_subnets[0], module.vpc.private_subnets[1]])
+    namespace = "aws:ec2:vpc"
   }
 
   setting {
     name      = "ELBSubnets"
     namespace = "aws:ec2:vpc"
-    value     = join(",",[module.vpc.public_subnets[0],module.vpc.public_subnets[1]])
+    value     = join(",", [module.vpc.public_subnets[0], module.vpc.public_subnets[1]])
   }
   setting {
-    namespace      = "aws:autoscaling:launchconfiguration"
-    name = "InstanceType"
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "InstanceType"
     value     = "t2.micro"
   }
   setting {
@@ -112,8 +112,8 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     value     = "Rolling"
   }
   setting {
-    name      = "aws:autoscaling:launchconfiguration"
-    namespace = "SecurityGroups"
+    name      = "SecurityGroups"
+    namespace = "aws:autoscaling:launchconfiguration"
     value     = aws_security_group.vprofile_Beans_ec2_sg.id
 
   }
@@ -122,5 +122,5 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     namespace = "SecurityGroups"
     value     = aws_security_group.vprofile_bean_sg.id
   }
-  depends_on = [aws_security_group.vprofile_Beans_ec2_sg,aws_security_group.vprofile_Beans_ec2_sg]
+  depends_on = [aws_security_group.vprofile_Beans_ec2_sg, aws_security_group.vprofile_Beans_ec2_sg]
 }
