@@ -1,8 +1,7 @@
-until [[ -f /var/lib/cloud/instance/boot-finished ]]; do
-  sleep 1
-done
+sleep 360
 sudo apt update
-sleep 60
+sleep 30
+sudo apt update
 sudo apt install git mysql-client -y
 git clone -b vp-rem https://github.com/devopshydclub/vprofile-project
 mysql -h ${rds-endpoint} -u ${dbuser} --password=${dbpass} accounts --ssl-mode=DISABLED < /home/ubuntu/vprofile-project/src/main/resources/db_backup.sql
