@@ -1,5 +1,5 @@
 resource "aws_instance" "vprofile-bastion-host" {
-  ami             = lookup(var.amis, var.region)
+  ami             = "ami-0557a15b87f6559cf"
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.vprofilekey.key_name
   subnet_id       = module.vpc.public_subnets[0]
@@ -17,6 +17,7 @@ resource "aws_instance" "vprofile-bastion-host" {
   }
   provisioner "remote-exec" {
     inline = [
+
       "chmod +x /tmp/vprofile-deploy.sh",
       "sudo /tmp/vprofile-deploy.sh"
     ]
