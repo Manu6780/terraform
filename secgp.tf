@@ -74,6 +74,13 @@ resource "aws_security_group" "vprofile_backend_sg" {
     security_groups = [aws_security_group.vprofile_Beans_ec2_sg.id]
 
   }
+
+  ingress {
+    from_port = 3306
+    protocol  = "tcp"
+    to_port   = 3306
+    security_groups = [aws_security_group.vprofile_bastion_sg.id]
+  }
 }
 resource "aws_security_group_rule" "backend_sg_allow_itself" {
   from_port                = 0
